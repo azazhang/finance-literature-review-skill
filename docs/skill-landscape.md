@@ -211,3 +211,8 @@ Official provider docs:
 - https://docs.anthropic.com/en/docs/claude-code/memory
 - https://docs.anthropic.com/en/docs/claude-code/sub-agents
 - https://geminicli.com/docs/reference/configuration/
+
+Antigravity second-pass note:
+
+- On this machine I found Antigravity user settings and Antigravity-related Gemini state, but no distinct Antigravity user skill directory analogous to Codex or Cursor.
+- Because of that, this repo now treats Gemini memory as the stable integration path and ships a best-effort workspace workflow file for Antigravity rather than claiming first-class official skill support.

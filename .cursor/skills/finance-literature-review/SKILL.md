@@ -18,6 +18,12 @@ The default goal is to:
 5. synthesize by design and mechanism,
 6. produce a usable reading list and matrix.
 
+See:
+
+- [references/journal-priority.md](references/journal-priority.md)
+- [references/output-modes.md](references/output-modes.md)
+- [references/synthesis-checklist.md](references/synthesis-checklist.md)
+
 ## Hard Rules
 
 - Never fabricate citations or metadata.
@@ -88,3 +94,5 @@ Default outputs:
 - synthesis,
 - gap statement,
 - verified citation block.
+
+Before finishing, check [references/synthesis-checklist.md](references/synthesis-checklist.md).

@@ -19,6 +19,12 @@ This skill turns a broad literature request into a disciplined finance research 
 5. synthesize by mechanism and design,
 6. produce a reading list, matrix, and gap statement.
 
+See:
+
+- [references/journal-priority.md](references/journal-priority.md)
+- [references/output-modes.md](references/output-modes.md)
+- [references/synthesis-checklist.md](references/synthesis-checklist.md)
+
 ## When To Use
 
 Use this skill when the user wants:
@@ -125,6 +131,8 @@ Default deliverables:
 - research gaps,
 - citation block.
 
+Before finishing, run the checklist in [references/synthesis-checklist.md](references/synthesis-checklist.md).
+
 ## Finance-Specific Heuristics
 
 - If the topic is asset pricing, keep theory, empirics, and measurement separate.
@@ -138,3 +146,14 @@ Default deliverables:
 - Use Zotero if a structured citation library is available.
 - Use metadata APIs or official journal pages before relying on scraped summaries.
 - Use PDF extraction only when the text is actually needed for design or mechanism verification.
+
+## Recommended Output Mode
+
+Pick one default mode unless the user asks for more than one:
+
+- reading list,
+- literature matrix,
+- related literature section,
+- gap map.
+
+See [references/output-modes.md](references/output-modes.md).

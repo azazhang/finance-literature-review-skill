@@ -19,7 +19,11 @@ REQUIRED = [
     ".cursor/skills/finance-literature-review/templates/literature-matrix.md",
     ".claude/commands/finance-lit-review.md",
     "docs/skill-landscape.md",
+    "docs/how-to-use.md",
+    "docs/provider-support.md",
+    ".agent/workflows/finance_lit_review.md",
     "scripts/install_local.py",
+    "scripts/verify_local_install.py",
 ]
 
 
@@ -36,6 +40,11 @@ def main() -> int:
     cursor_skill = (repo_root / ".cursor/skills/finance-literature-review/SKILL.md").read_text()
     if "Never fabricate citations" not in codex_skill or "Never fabricate citations" not in cursor_skill:
         print("verification failed: missing citation guardrail in one or more skill files")
+        return 1
+
+    readme = (repo_root / "README.md").read_text()
+    if "How To Use The Skill" not in readme:
+        print("verification failed: README is missing usage section")
         return 1
 
     print("repo structure looks valid")
