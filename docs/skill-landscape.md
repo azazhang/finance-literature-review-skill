@@ -96,34 +96,42 @@ I did not find a strong open-source skill that defaults to:
 
 That gap is why this repo exists.
 
-### 2. Too Little Attention To Published Versus Working Paper Status
+### 2. Flat Monolithic Treatment of Working Papers
 
-Many research skills treat papers as interchangeable units.
+Many research skills either ignore working papers or dump them into a flat bottom tier.
 
-That is often wrong in finance. A current NBER or SSRN draft can be extremely important, but a literature review still needs to tell the reader whether the result is:
+That is fundamentally wrong in finance and economics. In frontier or fast-moving topics (e.g., GenAI in market pricing, regional banking runs, private debt, climate risk), elite working papers (NBER, CEPR, Central Banks, Top 3 R&Rs, AFA/WFA/NBER SI presentations) often lead the profession years before print publication. A literature review must distinguish:
+- Tier 1: institutional series (NBER, CEPR, Fed FEDS, BIS, ECB) and advanced screening (R&Rs at Top 3/Top 5, AFA/WFA acceptance).
+- Tier 2: top university series and high-download SSRN FEN papers.
+- Tier 3: early unvetted preprints.
 
-- published in a top journal,
-- published in a field journal,
-- still a working paper,
-- only weakly cited or weakly verified.
+Furthermore, on frontier topics, Tier 1 working papers sit co-equal with Top 3 journal publications for mechanism discovery and active empirical debate, while for mature paradigms peer-reviewed articles provide the foundational anchor.
 
-### 3. Too Little Tracking Of Identification Strategy
+### 3. Too Little Tracking Of Identification Strategy & Data Infrastructure
 
 Generic scientific review skills often emphasize thematic synthesis only.
 
-In empirical finance, a useful literature review usually needs to record:
-
-- research design,
-- identification strategy,
-- sample period,
+In empirical finance, a useful literature review must record:
+- research design & source of exogenous variation (specific policy, tax change, regulatory threshold, RDD cutoff),
+- data infrastructure (Compustat/CRSP, Dealscan, TRACE, Call Reports, HMDA, TAQ, SEC EDGAR text),
+- sample filters & exclusions (financials/utilities exclusion, price floors),
 - unit of observation,
-- key outcome variable,
-- mechanism story,
-- main limitation.
+- econometric nuances (fixed effects structure, Petersen clustering, modern staggered DiD diagnostics),
+- economic mechanism / transmission channel,
+- main limitation and identification threats.
 
 Without that, the review is not especially useful for a referee, dissertation chapter, or top-journal positioning memo.
 
-### 4. Too Much Provider-Specific Lock-In
+### 4. The "Abstract Trap" and Hallucinated Contributions
+
+A major vulnerability across virtually all existing literature skills is that agents read only the title and abstract, and then interpolate the rest. Because abstracts are promotional summaries, they lack the specific exogenous shock, baseline coefficients, fixed effects, and identification limitations. Agents end up:
+- inventing methodologies and effect sizes,
+- assigning false intellectual ownership (e.g., crediting a 2022 empirical paper with originating a theoretical mechanism derived in 1983),
+- blurring the line between what a paper established and what it left open.
+
+This repo directly solves this via a **Three-Tier Verification Quarantine** (`[Full-Text]`, `[Intro/Table]`, `[Abstract-Only]`), the **3-Anchor Introduction Retrieval Protocol**, and explicit **Intellectual Lineage Tracking**.
+
+### 5. Too Much Provider-Specific Lock-In
 
 Several repos are strong conceptually but tightly coupled to one tool or one command surface. This repo avoids that by shipping provider-native wrappers around the same finance workflow.
 
@@ -172,11 +180,15 @@ From ResearchClaw / research-plugins:
 
 ### Added
 
-- finance / econ / accounting venue ladder,
-- explicit published-versus-working-paper separation,
-- identification-strategy extraction,
-- finance-oriented synthesis axes,
-- support for NBER / CEPR / SSRN / RePEc as frontier inputs.
+- dynamic finance / econ / accounting venue ladder with subfield differentiation,
+- working paper quality tiering (Tier 1 vs 2 vs 3, R&R status, top conference screening),
+- operational discovery channels for working papers (SSRN FEN, NBER programs, CEPR, Central Banks, top conferences, JEL codes),
+- topic maturity-based dynamic weighting (frontier co-equality vs mature bedrock anchors),
+- abstract quarantine & 3-anchor introduction retrieval protocol,
+- 16-column empirical finance literature matrix,
+- intellectual lineage and boundary condition tracking (what papers established vs what they left open),
+- deep econometric nuance tracking (exogenous shocks, fixed effects, clustering, staggered DiD diagnostics),
+- publication status verification (checking if older working papers were subsequently published).
 
 ### Deliberately Not Added
 

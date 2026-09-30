@@ -1,96 +1,85 @@
-# Finance Journal Priority
+# Finance Journal & Working Paper Priority
 
-Use this venue ladder as a default heuristic, not as a mechanical ranking rule.
+This reference establishes the venue hierarchy for finance literature reviews. Unlike generic academic rankings, finance evaluation requires subfield calibration and a dynamic integration of elite working paper series.
 
-## Tier F1: Core Finance Journals
+---
 
-- *Journal of Finance*
-- *Journal of Financial Economics*
-- *Review of Financial Studies*
+## 1. Core Finance ("Top 3")
 
-These should usually anchor the first pass for mature finance topics.
+The canonical premier finance journals:
+- *Journal of Finance* (JF)
+- *Journal of Financial Economics* (JFE)
+- *Review of Financial Studies* (RFS)
 
-## Tier F2: Strong Adjacent Finance Outlets
+---
 
-- *Journal of Financial and Quantitative Analysis*
-- *Review of Finance*
-- *Management Science* when the paper is clearly finance-facing
-- *Journal of Corporate Finance*
-- *Financial Management*
-- *Journal of Banking and Finance*
+## 2. Strong Field & Subfield-Leading Finance Journals
 
-Use these after F1 or when the topic is more specialized.
+High-impact specialized and general finance venues:
+- **General Finance & Econometrics**:
+  - *Journal of Financial and Quantitative Analysis* (JFQA)
+  - *Review of Finance* (RF)
+  - *Management Science* (MS - finance department papers)
+- **Corporate Finance & Governance**:
+  - *Review of Corporate Finance Studies* (RCFS)
+  - *Journal of Corporate Finance* (JCF)
+  - *Financial Management* (FM)
+- **Asset Pricing, Markets & Quantitative Finance**:
+  - *Review of Asset Pricing Studies* (RAPS)
+  - *Journal of Financial Markets* (JFM)
+  - *Journal of Financial Econometrics*
+  - *Mathematical Finance*
+- **Banking & Financial Intermediation**:
+  - *Journal of Money, Credit and Banking* (JMCB)
+  - *Journal of Banking & Finance* (JBF)
+  - *Journal of Financial Services Research* (JFSR)
 
-## Adjacent Economics Priority
+---
 
-### Top General Economics
+## 3. Adjacent Top Economics ("Top 5")
 
-- *American Economic Review*
+When the research question involves macroeconomic transmission, industrial organization, contract theory, or econometrics:
+- *American Economic Review* (AER)
+- *Quarterly Journal of Economics* (QJE)
+- *Journal of Political Economy* (JPE)
 - *Econometrica*
-- *Journal of Political Economy*
-- *Quarterly Journal of Economics*
-- *Review of Economic Studies*
+- *Review of Economic Studies* (ReStud)
+- *AEJ: Applied Economics* and *AEJ: Macroeconomics* (for applied empirical designs)
 
-### Common Adjacent Field Journals
+---
 
-- *Journal of Monetary Economics*
-- *Journal of Public Economics*
-- *Journal of International Economics*
-- *Review of Economics and Statistics*
-- *RAND Journal of Economics*
+## 4. Top Accounting ("Top 5")
 
-Use these when the research question is really about causal identification, macro channels, regulation, labor, household behavior, or market design rather than finance alone.
+Crucial when the topic involves corporate disclosure, earnings quality, information asymmetry, voluntary disclosure, auditing, executive compensation, or taxation:
+- *The Accounting Review* (TAR)
+- *Journal of Accounting Research* (JAR)
+- *Journal of Accounting and Economics* (JAE)
+- *Review of Accounting Studies* (RAST)
+- *Contemporary Accounting Research* (CAR)
 
-## Adjacent Accounting Priority
+---
 
-### Top Accounting
+## 5. Working Paper Hierarchy & Dynamic Placement
 
-- *The Accounting Review*
-- *Journal of Accounting Research*
-- *Journal of Accounting and Economics*
+**Do NOT automatically place working papers at the bottom of the hierarchy.** 
 
-### Strong Additional Accounting Outlets
+Working papers are tiered by screening rigor, and their position adjusts dynamically according to topic maturity:
 
-- *Contemporary Accounting Research*
-- *Review of Accounting Studies*
+### Working Paper Tiers
+* **Tier 1 (Elite / Vetted Working Papers)**:
+  * **Institutional Series**: NBER Working Papers (`CF`, `AP`, `ME`, `PE`), CEPR Discussion Papers, Federal Reserve Board FEDS, NY Fed Staff Reports, BIS Working Papers, ECB Working Papers, SEC DERA.
+  * **Advanced Pipeline**: Active Revise & Resubmit (R&R) at Top 3 Finance or Top 5 Econ.
+  * **Top Conference Selection**: Presented at AFA, WFA, EFA, NBER Summer Institute, SFS Cavalcade, or FIRS (<10% acceptance rates).
+* **Tier 2 (Established Department & Mid-Conference Series)**:
+  * Top university department series (Booth, Wharton, Sloan, Stanford GSB, Columbia, NYU Stern, Harvard, LSE).
+  * High-download (>500) SSRN FEN papers, papers presented at regional or specialized workshops (Adam Smith, Utah Winter, Texas Finance Festival).
+* **Tier 3 (Early / Unvetted Drafts)**:
+  * Initial SSRN uploads, self-archived preprints without institutional or conference vetting.
 
-Use these when the topic overlaps:
+### Dynamic Weighting by Topic Maturity
+* **Frontier / Rapidly Evolving Topics** (e.g., FinTech, GenAI, bank runs post-2023, private credit, climate risk):
+  * **Rule**: Tier 1 Working Papers sit **co-equal** with Top 3 publications for mechanisms, empirical findings, and active policy debates.
+* **Mature / Paradigm Topics** (e.g., capital structure trade-off theory, original CAPM / 3-factor anomalies):
+  * **Rule**: Core peer-reviewed journals are the bedrock anchors. Working papers are used to highlight recent econometric re-evaluations (e.g., staggered DiD diagnostics).
 
-- disclosure,
-- earnings quality,
-- financial reporting,
-- auditing,
-- governance,
-- information environment,
-- analysts,
-- accounting-based contracting.
-
-## Frontier Working Paper Ladder
-
-- NBER Working Papers
-- CEPR Discussion Papers
-- SSRN eLibrary / FEN
-- RePEc / IDEAS
-
-Use these when:
-
-- the literature is moving quickly,
-- the topic is very recent,
-- published evidence is sparse,
-- the user explicitly wants frontier coverage.
-
-But always label them as working papers.
-
-## Extraction Priorities
-
-When you read a finance paper, record:
-
-- published or working paper,
-- venue tier,
-- sample period,
-- geography,
-- unit of observation,
-- identification strategy,
-- main result,
-- mechanism,
-- main limitation.
+Always label working papers explicitly with their series, version year, and screening status (e.g., `[NBER WP #31245 / R&R JF]`, `[AFA 2025 Paper]`, `[SSRN Working Paper]`).

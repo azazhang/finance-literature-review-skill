@@ -3,14 +3,24 @@ from __future__ import annotations
 
 from pathlib import Path
 
-
-EXPECTED = {
+CORE_PATHS = {
     "codex": Path.home() / ".codex" / "skills" / "finance-literature-review",
     "cursor": Path.home() / ".cursor" / "skills" / "finance-literature-review",
     "claude_command": Path.home() / ".claude" / "commands" / "finance-lit-review.md",
+    "antigravity_skill": Path.home() / ".gemini" / "antigravity" / "skills" / "finance-literature-review",
+}
+
+MANAGED_BLOCK_FILES = {
     "claude_memory": Path.home() / ".claude" / "CLAUDE.md",
     "gemini_memory": Path.home() / ".gemini" / "GEMINI.md",
     "copilot_instructions": Path.home() / ".copilot" / "instructions.md",
+}
+
+OPTIONAL_AGENT_TOOLS = {
+    "agents_universal": Path.home() / ".agents" / "skills" / "finance-literature-review",
+    "openhands": Path.home() / ".openhands" / "skills" / "finance-literature-review",
+    "openclaw": Path.home() / ".openclaw" / "skills" / "finance-literature-review",
+    "opencode": Path.home() / ".opencode" / "skills" / "finance-literature-review",
 }
 
 BLOCK = "finance-literature-review-skill:start"
@@ -28,17 +38,25 @@ def check_text_block(path: Path) -> str:
 def main() -> int:
     results = []
     failed = False
-    for key in ("codex", "cursor", "claude_command"):
-        path = EXPECTED[key]
-        exists = path.exists()
-        failed = failed or not exists
+
+    for key, path in CORE_PATHS.items():
+        exists = path.exists() or path.is_symlink()
+        if not exists:
+            failed = True
         results.append(f"{'ok' if exists else 'missing'}: {path}")
 
-    for key in ("claude_memory", "gemini_memory", "copilot_instructions"):
-        line = check_text_block(EXPECTED[key])
+    for key, path in MANAGED_BLOCK_FILES.items():
+        line = check_text_block(path)
         if not line.startswith("ok:"):
             failed = True
         results.append(line)
+
+    for key, path in OPTIONAL_AGENT_TOOLS.items():
+        if path.parent.exists():
+            exists = path.exists() or path.is_symlink()
+            if not exists:
+                failed = True
+            results.append(f"{'ok' if exists else 'missing'}: {path}")
 
     for line in results:
         print(line)

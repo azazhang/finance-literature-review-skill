@@ -4,87 +4,54 @@ Finance-first literature review instructions for coding agents.
 
 Repo: https://github.com/azazhang/finance-literature-review-skill
 
-This project adapts the strongest public literature-research skill patterns to a PhD-in-Finance workflow:
+This project adapts the strongest public literature-research skill patterns to a rigorous PhD-in-Finance workflow:
 
-- top-journal prioritization,
-- published-versus-working-paper separation,
-- identification-strategy tracking,
-- finance-first synthesis with adjacent economics and accounting support.
+- **Dynamic venue & working paper hierarchy**: Values Tier 1 working papers (NBER, CEPR, Central Banks, Top 3 R&Rs, AFA/WFA presentations) alongside core journals (JF, JFE, RFS) on frontier topics.
+- **Systematic working paper discovery**: Explicit search channels across SSRN FEN eJournals, NBER programs, CEPR, central banks, annual conference proceedings, and finance JEL codes.
+- **Abstract Quarantine & Anti-Hallucination**: Prohibits inferring contributions, identification strategies, or magnitudes from abstracts alone; mandates retrieving Introductions and table notes.
+- **3-Anchor Introduction Protocol**: Verifies empirical designs, quantitative magnitudes, and self-stated contributions relative to landmark benchmark papers.
+- **Intellectual lineage & boundary tracking**: Traces theoretical originators, causal identification benchmarks, and records what prior studies established vs. what they left open.
+- **Granular econometric & identification tracking**: Captures specific exogenous shocks, primary datasets (Compustat, CRSP, Dealscan, Call Reports, TRACE), fixed effects structures, standard error clustering, and staggered DiD robustness in a 16-column matrix.
+- **Finance-first synthesis**: Synthesizes by theoretical mechanism and causal design with adjacent economics and accounting support.
+- **Zero citation fabrication**: Strict anti-hallucination guardrails and publication status verification.
 
 ## What This Skill Does
 
-The skill turns a vague literature request into a structured review workflow:
+The skill turns a literature request into an academic review workflow:
 
-1. scope the question,
-2. set the venue ladder,
-3. collect and verify sources,
-4. extract finance-relevant paper attributes,
-5. synthesize by mechanism and research design,
-6. output a reading list, literature matrix, and gap statement.
-
-It is designed for requests such as:
-
-- "map the literature on bank competition and stability"
-- "build a related literature section for disclosure and cost of capital"
-- "give me the top papers and frontier working papers on climate finance"
-- "separate the identification strategies in the payout literature"
-
-## Finance Defaults
-
-- Start with top finance journals.
-- Then widen to adjacent top economics journals if the mechanism or identification strategy overlaps.
-- Then widen to top accounting journals when the topic overlaps disclosure, reporting, auditing, governance, or information environment.
-- Treat NBER, CEPR, SSRN, and RePEc / IDEAS as frontier inputs, but label them clearly as working papers.
-- For each core empirical paper, capture:
-  - sample,
-  - sample period,
-  - unit of observation,
-  - identification strategy,
-  - main finding,
-  - mechanism,
-  - main limitation,
-  - venue tier.
+1. **Scope & Topic Maturity**: Classify topic as frontier/emergent (where Tier 1 working papers lead) or mature paradigm (where peer-reviewed articles anchor).
+2. **Build Search Grid**: Construct query grids across top journals, SSRN FEN, NBER programs, conference schedules, and JEL codes.
+3. **Collect & Introduction Retrieval**: Retrieve full-text or Introduction sections (Paras 3–11); quarantine abstract-only papers to prevent hallucinated contributions.
+4. **Extract Finance Matrix (16 Columns)**: Populate empirical matrix capturing datasets, shocks, fixed effects, verified findings, mechanisms, boundary conditions, and lineage roles.
+5. **Synthesize by Mechanism & Lineage**: Contrast causal designs and theoretical channels; separate empirical correlations from mechanisms and preserve intellectual ownership.
+6. **Deliver**: Output a prioritized reading list, complete literature matrix, draft-ready related literature section, or research gap map.
 
 ## Supported Providers
 
 | Provider | Repo Asset | Local Install Target | Status |
 | --- | --- | --- | --- |
-| Codex | `providers/codex/finance-literature-review/` | `~/.codex/skills/finance-literature-review` | supported |
-| Cursor | `.cursor/skills/finance-literature-review/` | `~/.cursor/skills/finance-literature-review` | supported |
-| Claude Code | `CLAUDE.md`, `.claude/commands/finance-lit-review.md` | `~/.claude/CLAUDE.md`, `~/.claude/commands/finance-lit-review.md` | supported |
+| OpenAI Codex | `providers/codex/finance-literature-review/` | `~/.codex/skills/finance-literature-review` | supported |
+| Cursor IDE | `.cursor/skills/finance-literature-review/` | `~/.cursor/skills/finance-literature-review` | supported |
+| Google Antigravity | `providers/codex/...` + `.agent/workflows/...` | `~/.gemini/antigravity/skills/`, `.agent/workflows/` | supported |
+| Claude Code | `CLAUDE.md`, `.claude/commands/finance-lit-review.md` | `~/.claude/CLAUDE.md`, `~/.claude/commands/` | supported |
 | Gemini CLI | `GEMINI.md` | `~/.gemini/GEMINI.md` | supported |
-| GitHub Copilot | `.github/copilot-instructions.md` | `~/.copilot/instructions.md` and repo-local instructions | supported |
-| Antigravity | `.agent/workflows/finance_lit_review.md` plus `GEMINI.md` | workspace-local workflow, Gemini memory path | experimental |
-
-## Antigravity Second Pass
-
-Second-pass result:
-
-- On this machine, Antigravity exposes a VS Code–style user settings file at `~/Library/Application Support/Antigravity/User/settings.json`.
-- I did not find a separate first-class local skill/rules directory analogous to Codex or Cursor.
-- The Gemini installation does expose `~/.gemini/GEMINI.md`, and Antigravity-related data also appears under `~/.gemini/antigravity/`.
-
-So the practical support model is:
-
-- **supported**: Gemini memory via `GEMINI.md`
-- **experimental**: workspace workflow file at `.agent/workflows/finance_lit_review.md`
-
-See [docs/provider-support.md](docs/provider-support.md).
+| GitHub Copilot | `.github/copilot-instructions.md` | `~/.copilot/instructions.md` & repo `.github/` | supported |
+| Universal Agents | `providers/codex/...` | `~/.agents/skills/finance-literature-review` | supported |
+| OpenHands | `providers/codex/...` | `~/.openhands/skills/finance-literature-review` | supported |
+| OpenClaw | `providers/codex/...` | `~/.openclaw/skills/finance-literature-review` | supported |
+| OpenCode | `providers/codex/...` | `~/.opencode/skills/finance-literature-review` | supported |
 
 ## How To Use The Skill
 
-The fastest explanation is:
+The basic formula is:
 
-- ask for a topic,
-- specify whether you want published-only or frontier coverage,
-- optionally specify geography, period, or subfield,
-- ask for the desired output shape.
+> topic + empirical setting + source preference + output format
 
 Examples:
 
-- "Do a finance literature review on shareholder payouts after tax shocks. Published papers first, then frontier working papers. Give me a matrix and gap statement."
-- "Map the disclosure literature relevant to cost of capital, with top accounting and top finance journals only."
-- "Scan the climate finance literature, split theory, empirics, and frontier working papers, and prioritize papers useful for a dissertation second chapter."
+- "Do a finance literature review on private credit growth and corporate borrowing. Treat as a frontier topic: prioritize Tier 1 working papers (NBER, CEPR, Top 3 R&Rs, AFA/WFA) alongside top finance journals. Deliver a matrix and research gap map."
+- "Map the disclosure literature relevant to cost of capital, with top accounting (JAR, JAE, TAR) and top finance journals. Capture the exogenous shock, mechanism, and endogeneity threats for each paper."
+- "Review the empirical literature on shareholder payouts following corporate tax shocks. Focus on quasi-natural experiments and staggered DiD designs, and produce a related literature section outline."
 
 Detailed usage examples are in [docs/how-to-use.md](docs/how-to-use.md).
 
@@ -120,7 +87,13 @@ python3 scripts/verify_local_install.py
 ## Repo Structure
 
 - `providers/codex/finance-literature-review/`: Codex-native skill package.
-- `.cursor/skills/finance-literature-review/`: Cursor project skill.
+  - `references/contribution-extraction.md`: Abstract quarantine, 3-anchor introduction protocol, and ownership lineage.
+  - `references/working-papers.md`: Working paper discovery channels, tiering, and evaluation.
+  - `references/journal-priority.md`: Venue hierarchy and dynamic topic weighting.
+  - `references/output-modes.md`: Detailed guides for reading lists, matrices, related-lit sections, and gap maps.
+  - `references/synthesis-checklist.md`: Quality checklist before final delivery.
+  - `templates/literature-matrix.md`: 16-column empirical finance matrix schema.
+- `.cursor/skills/finance-literature-review/`: Cursor project skill (mirrors codex package).
 - `CLAUDE.md` and `.claude/commands/finance-lit-review.md`: Claude Code memory and command.
 - `GEMINI.md`: Gemini memory file.
 - `.github/copilot-instructions.md`: GitHub Copilot repo instructions.
@@ -131,7 +104,3 @@ python3 scripts/verify_local_install.py
 - `scripts/install_local.py`: local installer.
 - `scripts/verify_repo.py`: repo validator.
 - `scripts/verify_local_install.py`: local install validator.
-
-## Benchmark Review
-
-See [docs/skill-landscape.md](docs/skill-landscape.md).

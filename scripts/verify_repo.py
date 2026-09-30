@@ -13,9 +13,17 @@ REQUIRED = [
     ".github/copilot-instructions.md",
     "providers/codex/finance-literature-review/SKILL.md",
     "providers/codex/finance-literature-review/references/journal-priority.md",
+    "providers/codex/finance-literature-review/references/working-papers.md",
+    "providers/codex/finance-literature-review/references/contribution-extraction.md",
+    "providers/codex/finance-literature-review/references/output-modes.md",
+    "providers/codex/finance-literature-review/references/synthesis-checklist.md",
     "providers/codex/finance-literature-review/templates/literature-matrix.md",
     ".cursor/skills/finance-literature-review/SKILL.md",
     ".cursor/skills/finance-literature-review/references/journal-priority.md",
+    ".cursor/skills/finance-literature-review/references/working-papers.md",
+    ".cursor/skills/finance-literature-review/references/contribution-extraction.md",
+    ".cursor/skills/finance-literature-review/references/output-modes.md",
+    ".cursor/skills/finance-literature-review/references/synthesis-checklist.md",
     ".cursor/skills/finance-literature-review/templates/literature-matrix.md",
     ".claude/commands/finance-lit-review.md",
     "docs/skill-landscape.md",
@@ -40,6 +48,10 @@ def main() -> int:
     cursor_skill = (repo_root / ".cursor/skills/finance-literature-review/SKILL.md").read_text()
     if "Never fabricate citations" not in codex_skill or "Never fabricate citations" not in cursor_skill:
         print("verification failed: missing citation guardrail in one or more skill files")
+        return 1
+
+    if "Abstract Quarantine" not in codex_skill or "Abstract Quarantine" not in cursor_skill:
+        print("verification failed: missing abstract quarantine guardrail in one or more skill files")
         return 1
 
     readme = (repo_root / "README.md").read_text()

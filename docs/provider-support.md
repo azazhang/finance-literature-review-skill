@@ -1,57 +1,80 @@
 # Provider Support
 
-This file records the current provider-support judgment for this repo.
+This document details the support model, configuration paths, and packaging formats for all supported AI coding agents.
 
-## Supported
+---
 
-### Codex
+## 1. Commercial & IDE-Native Agents
 
-- Format: skill directory with `SKILL.md`
-- Install target: `~/.codex/skills/finance-literature-review`
+### OpenAI Codex
+* **Packaging Format**: Standard skill package with YAML frontmatter `SKILL.md`, references, and templates.
+* **Install Target**: `~/.codex/skills/finance-literature-review`
+* **Status**: Full first-class support.
 
-### Cursor
+### Cursor IDE
+* **Packaging Format**: Cursor skill package with `SKILL.md`, `references/`, and `templates/`.
+* **Install Target**: `~/.cursor/skills/finance-literature-review`
+* **Status**: Full first-class support.
 
-- Format: skill directory with `SKILL.md`
-- Install target: `~/.cursor/skills/finance-literature-review`
+### Google Antigravity
+* **Packaging Format**: 
+  1. **Global Skills**: Antigravity discovers and registers skills directly from `~/.gemini/antigravity/skills/` (and its configuration link `~/.gemini/config/skills/`).
+  2. **Workspace Workflow**: Workspace-local workflow file at `.agent/workflows/finance_lit_review.md`.
+  3. **Global Memory**: Project and global agent instructions in `GEMINI.md`.
+* **Install Target**: `~/.gemini/antigravity/skills/finance-literature-review`, `~/.gemini/GEMINI.md`, and repo `.agent/workflows/`
+* **Status**: Full first-class support.
 
 ### Claude Code
-
-- Format: `CLAUDE.md` plus `.claude/commands/*.md`
-- Install target: `~/.claude/CLAUDE.md`, `~/.claude/commands/finance-lit-review.md`
+* **Packaging Format**: Managed instruction block in `CLAUDE.md` plus dedicated custom slash command.
+* **Install Target**: 
+  * Memory: `~/.claude/CLAUDE.md` (via managed block)
+  * Slash Command: `~/.claude/commands/finance-lit-review.md` (invoked via `/finance-lit-review`)
+* **Status**: Full first-class support.
 
 ### Gemini CLI
-
-- Format: `GEMINI.md`
-- Install target: `~/.gemini/GEMINI.md`
+* **Packaging Format**: Managed instruction block in `GEMINI.md`.
+* **Install Target**: `~/.gemini/GEMINI.md`
+* **Status**: Full first-class support.
 
 ### GitHub Copilot
+* **Packaging Format**: Repository custom instructions (`.github/copilot-instructions.md`) and user-level custom instructions.
+* **Install Target**: `~/.copilot/instructions.md` and repository `.github/copilot-instructions.md`
+* **Status**: Full first-class support.
 
-- Format: repo-local instructions plus merged user instructions
-- Install target: repo `.github/copilot-instructions.md`, optional `~/.copilot/instructions.md`
+---
 
-## Experimental
+## 2. Open-Source Autonomous Agent Ecosystems
 
-### Antigravity
+The skill package format (`SKILL.md` with progressive disclosure references and templates) conforms to the universal agent skills standard and is directly supported across open-source agent frameworks:
 
-Second-pass findings on this machine:
+### Universal Agent Skills Directory
+* **Install Target**: `~/.agents/skills/finance-literature-review`
+* **Status**: Supported.
 
-- Antigravity appears to be a VS Code–style app with user settings at `~/Library/Application Support/Antigravity/User/settings.json`.
-- I did not find a distinct built-in user skill/rules directory comparable to Codex or Cursor.
-- Antigravity-related state appears under `~/.gemini/antigravity/`, which strengthens the case that Gemini memory is the stable integration point.
+### OpenHands
+* **Install Target**: `~/.openhands/skills/finance-literature-review`
+* **Status**: Supported.
 
-Conclusion:
+### OpenClaw
+* **Install Target**: `~/.openclaw/skills/finance-literature-review`
+* **Status**: Supported.
 
-- The **supported** install path is still Gemini memory via `GEMINI.md`.
-- The repo also ships an **experimental** workspace workflow file at `.agent/workflows/finance_lit_review.md` as a best-effort adapter for agent-first IDE workflows.
+### OpenCode
+* **Install Target**: `~/.opencode/skills/finance-literature-review`
+* **Status**: Supported.
 
-This experimental adapter should be treated as a convenience layer, not a guaranteed official standard.
+---
 
-Why that file shape:
+## 3. Automated Local Installation
 
-- A community-documented Antigravity workflow convention describes workspace workflows as Markdown files in `.agent/workflows/` with YAML frontmatter.
-- I still did not find an official first-party local skill directory analogous to Codex or Cursor, so I am treating this as a best-effort workflow adapter rather than claiming official parity.
+To install or sync all providers automatically on your machine:
 
-Reference:
+```bash
+python3 scripts/install_local.py --force
+```
 
-- https://antigravity.codes/blog/workflows
-- https://antigravity.codes/rules/antigravity-workflows/antigravity-workflow-fundamentals
+To verify the installation status across all local tools:
+
+```bash
+python3 scripts/verify_local_install.py
+```

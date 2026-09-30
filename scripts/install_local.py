@@ -9,6 +9,19 @@ from pathlib import Path
 BLOCK_START = "<!-- finance-literature-review-skill:start -->"
 BLOCK_END = "<!-- finance-literature-review-skill:end -->"
 
+ALL_PROVIDERS = [
+    "codex",
+    "cursor",
+    "claude",
+    "gemini",
+    "copilot",
+    "antigravity",
+    "agents",
+    "openhands",
+    "openclaw",
+    "opencode",
+]
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Install local provider assets for the finance literature review repo.")
@@ -21,8 +34,8 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--providers",
-        default="codex,cursor,claude,gemini,copilot,antigravity",
-        help="Comma-separated providers to install. Default installs all supported targets.",
+        default=",".join(ALL_PROVIDERS),
+        help=f"Comma-separated providers to install. Default: all ({','.join(ALL_PROVIDERS)}).",
     )
     parser.add_argument("--dry-run", action="store_true", help="Print actions without writing changes.")
     return parser.parse_args()
@@ -41,7 +54,7 @@ def remove_path(path: Path) -> None:
 
 def parse_provider_list(raw: str) -> set[str]:
     providers = {item.strip().lower() for item in raw.split(",") if item.strip()}
-    valid = {"codex", "cursor", "claude", "gemini", "copilot", "antigravity"}
+    valid = set(ALL_PROVIDERS)
     unknown = providers - valid
     if unknown:
         raise SystemExit(f"unknown providers: {', '.join(sorted(unknown))}")
@@ -102,6 +115,7 @@ def main() -> int:
     cursor_src = repo_root / ".cursor" / "skills" / "finance-literature-review"
     claude_cmd_src = repo_root / ".claude" / "commands" / "finance-lit-review.md"
 
+    # 1. OpenAI Codex
     if "codex" in providers:
         actions.append(
             link_or_copy(
@@ -112,6 +126,8 @@ def main() -> int:
                 args.dry_run,
             )
         )
+
+    # 2. Cursor IDE
     if "cursor" in providers:
         actions.append(
             link_or_copy(
@@ -122,6 +138,8 @@ def main() -> int:
                 args.dry_run,
             )
         )
+
+    # 3. Claude Code
     if "claude" in providers:
         actions.append(
             link_or_copy(
@@ -135,10 +153,14 @@ def main() -> int:
         actions.append(
             merge_block(home / ".claude" / "CLAUDE.md", (repo_root / "CLAUDE.md").read_text(), args.dry_run)
         )
+
+    # 4. Gemini CLI
     if "gemini" in providers:
         actions.append(
             merge_block(home / ".gemini" / "GEMINI.md", (repo_root / "GEMINI.md").read_text(), args.dry_run)
         )
+
+    # 5. GitHub Copilot
     if "copilot" in providers:
         actions.append(
             merge_block(
@@ -147,9 +169,68 @@ def main() -> int:
                 args.dry_run,
             )
         )
+
+    # 6. Google Antigravity
     if "antigravity" in providers:
         actions.append(
-            "note: antigravity has no confirmed separate local skill directory on this machine; workspace file .agent/workflows/finance_lit_review.md is repo-local and GEMINI.md remains the supported memory path."
+            link_or_copy(
+                codex_src,
+                home / ".gemini" / "antigravity" / "skills" / "finance-literature-review",
+                args.force,
+                args.mode,
+                args.dry_run,
+            )
+        )
+        actions.append(
+            "note: antigravity workspace workflow available at .agent/workflows/finance_lit_review.md and skill installed to ~/.gemini/antigravity/skills/."
+        )
+
+    # 7. Universal Agent Skills (~/.agents/skills)
+    if "agents" in providers:
+        actions.append(
+            link_or_copy(
+                codex_src,
+                home / ".agents" / "skills" / "finance-literature-review",
+                args.force,
+                args.mode,
+                args.dry_run,
+            )
+        )
+
+    # 8. OpenHands
+    if "openhands" in providers:
+        actions.append(
+            link_or_copy(
+                codex_src,
+                home / ".openhands" / "skills" / "finance-literature-review",
+                args.force,
+                args.mode,
+                args.dry_run,
+            )
+        )
+
+    # 9. OpenClaw
+    if "openclaw" in providers:
+        actions.append(
+            link_or_copy(
+                codex_src,
+                home / ".openclaw" / "skills" / "finance-literature-review",
+                args.force,
+                args.mode,
+                args.dry_run,
+            )
+        )
+
+    # 10. OpenCode
+    if "opencode" in providers:
+        actions.append(
+            link_or_copy(
+                codex_src,
+                home / ".opencode" / "skills" / "finance-literature-review",
+                args.force,
+                args.mode,
+                args.dry_run,
+            )
         )
 
     print("\n".join(actions))

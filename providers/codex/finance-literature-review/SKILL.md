@@ -1,159 +1,97 @@
 ---
 name: finance-literature-review
-description: Conduct finance-first literature reviews and related-work synthesis. Use when the user asks for a literature review, related literature section, annotated bibliography, gap map, journal-targeted reading list, finance or macro-finance paper scan, corporate finance or asset-pricing synthesis, banking or disclosure literature summary, or adjacent economics / accounting review. Prioritize top finance journals first, then adjacent top economics and accounting journals, then clearly labeled working papers from NBER, CEPR, SSRN, and RePEc.
-metadata:
-  version: 0.1.0
-  domain: finance
+description: Conduct finance-first literature reviews, related-literature sections, and research synthesis. Use when the user asks for a literature review, related literature section, annotated bibliography, gap map, journal-targeted reading list, finance/macro-finance paper scan, corporate finance or asset-pricing synthesis, banking/intermediation summary, disclosure review, or working paper discovery. Prioritizes top finance journals (JF, JFE, RFS), subfield leaders, top economics (Top 5), top accounting (Top 5), and dynamically integrates elite working papers (NBER, CEPR, Central Banks, R&Rs, AFA/WFA). Enforces strict abstract quarantine and introduction/table verification to prevent hallucinated contributions.
 ---
 
 # Finance Literature Review
 
-## What This Skill Does
+## Purpose
 
-This skill turns a broad literature request into a disciplined finance research workflow:
+Run a rigorous, PhD-level finance literature review that reflects the standards of top finance seminars, referee reports, and dissertation chapters.
 
-1. scope the question,
-2. define the venue ladder,
-3. collect and verify sources,
-4. extract finance-relevant study attributes,
-5. synthesize by mechanism and design,
-6. produce a reading list, matrix, and gap statement.
+Key objectives:
+1. Scope the research question and identify topic maturity (frontier vs. mature paradigm).
+2. Prioritize venues using a dynamic hierarchy that values elite working papers alongside top peer-reviewed journals.
+3. Systematically discover working papers via SSRN FEN, NBER programs, CEPR, central bank series, and premier conference programs.
+4. **Enforce the Abstract Quarantine**: Prohibit agents from inferring contributions, econometric designs, or magnitudes from abstracts alone.
+5. **Execute the 3-Anchor Introduction Protocol**: Retrieve the Introduction (Paras 3–11) and baseline table notes to verify actual causal variation, quantitative magnitudes, and self-stated contributions.
+6. **Map Intellectual Lineage & Ownership**: Distinguish Theoretical Originators from Empirical Landmarks, Causal Identification Benchmarks, and Boundary Reassessments. Record what previous papers established vs. what they left open.
+7. Deliver actionable outputs (reading list, 16-column literature matrix, related literature section, or research gap map).
 
-See:
+---
 
-- [references/journal-priority.md](references/journal-priority.md)
-- [references/output-modes.md](references/output-modes.md)
-- [references/synthesis-checklist.md](references/synthesis-checklist.md)
+## Detailed References
 
-## When To Use
+* **Contribution Extraction & Anti-Hallucination Protocol**: [references/contribution-extraction.md](references/contribution-extraction.md)
+* **Working Paper Discovery & Evaluation**: [references/working-papers.md](references/working-papers.md)
+* **Venue Hierarchy & Dynamic Weighting**: [references/journal-priority.md](references/journal-priority.md)
+* **Output Modes & Formats**: [references/output-modes.md](references/output-modes.md)
+* **Synthesis & Delivery Checklist**: [references/synthesis-checklist.md](references/synthesis-checklist.md)
+* **Literature Matrix Template**: [templates/literature-matrix.md](templates/literature-matrix.md)
 
-Use this skill when the user wants:
-
-- a literature review or related literature section,
-- an annotated bibliography,
-- a finance reading list,
-- a working-paper scan,
-- a referee-style map of the literature,
-- a thesis / dissertation literature chapter start,
-- a topic scan across finance, economics, and accounting.
+---
 
 ## Hard Rules
 
-- Never fabricate citations or metadata.
-- Always separate published papers from working papers.
-- Prefer top finance journals first.
-- Only widen to adjacent economics or accounting journals when they are genuinely relevant to the question.
-- For empirical papers, capture sample, period, unit of observation, identification strategy, key result, mechanism, and main limitation.
-- If only titles or abstracts are available, say so directly.
+- **Zero Citation Fabrication**: Never fabricate citations, authors, publication years, or venue tiers.
+- **Abstract Quarantine & No Inferred Contributions**: Never infer identification strategies, fixed effects, clustering, or numerical magnitudes from an abstract alone. If only the abstract is accessible, tag the paper `[Abstract-Only Provisional]`, preface statements with *"Author claims in abstract (unverified): ..."*, and mark empirical design fields as unverified. Abstract-only papers **cannot** establish definitive literature ownership or declare research gaps settled.
+- **Dynamic Working Paper Integration**: Never automatically dump working papers into a bottom tier. Tier working papers into Tier 1 (NBER, CEPR, Central Banks, Top 3/5 R&Rs, AFA/WFA/NBER SI), Tier 2, and Tier 3. On frontier topics, Tier 1 working papers sit co-equal with Top 3 publications for mechanisms and current evidence.
+- **Publication Status Verification**: Check whether older working papers have been published in peer-reviewed journals.
+- **Empirical Rigor**: Explicitly extract the specific policy shock/exogenous variation, datasets (Compustat, CRSP, Dealscan, Call Reports, etc.), fixed effects, and identification limitations.
+- **Synthesize by Mechanism & Lineage**: Structure syntheses by economic transmission channel and intellectual lineage, never simple author chronologies. Record both what a paper established and its boundary conditions (what it left open).
+- **State Evidence Limits Transparently**: If evidence is provisional or only abstracts/preprints are available, state that directly.
 
-## Default Source Order
+---
 
-1. Published top finance journals.
-2. Adjacent top economics journals.
-3. Top accounting journals when the topic overlaps disclosure, reporting, auditing, governance, or information environment.
-4. Working-paper outlets: NBER, CEPR, SSRN, RePEc / IDEAS.
-5. Broad metadata indices and cross-disciplinary sources.
+## 6-Step Workflow
 
-See [references/journal-priority.md](references/journal-priority.md).
+### Step 1: Scope & Topic Maturity
+Clarify the economic mechanism, institutional setting, geographic scope, sample window, and output mode. 
+* **Assess topic maturity**: Is this a **frontier/emergent topic** (e.g., GenAI in finance, private credit, recent bank run mechanisms) where Tier 1 working papers lead the literature, or a **mature paradigm** (e.g., capital structure trade-off, asset pricing anomalies) where peer-reviewed top-journal papers form the bedrock?
+* **Identify relevant subfields**: Asset Pricing, Corporate Finance/Governance, Banking/Financial Intermediation, Macro-Finance, or Accounting/Disclosure.
 
-## Workflow
+### Step 2: Build the Search Grid & Query Plan
+Construct an exhaustive search grid combining:
+1. **Core Concept Terms & Finance Synonyms**: (e.g., "bank capital", "regulatory arbitrage", "risk-weighted assets").
+2. **Finance JEL Codes**: Guide queries using `G1` (Financial Markets), `G2` (Financial Institutions), `G3` (Corporate Finance), `M4` (Disclosure/Accounting), `E4/E5` (Monetary Transmission).
+3. **Identification & Shock Keywords**: Specific policy shocks (e.g., "Dodd-Frank", "TCJA 2017", "Basel III", "Russell reconstitution"), method keywords (e.g., "staggered difference-in-differences", "fuzzy RDD", "Khwaja-Mian").
+4. **Data Infrastructure Terms**: (e.g., "Compustat", "CRSP", "Dealscan", "Call Reports", "HMDA", "TRACE", "TAQ", "10-K text").
+5. **Systematic Working Paper Channels**:
+   * SSRN Financial Economics Network (FEN) subject eJournals.
+   * NBER research programs (`CF`, `AP`, `ME`, `PE`) and CEPR discussion papers.
+   * Central Bank series (Federal Reserve Board FEDS, NY Fed Staff Reports, BIS, ECB).
+   * Annual conference programs (AFA, WFA, EFA, NBER Summer Institute, SFS Cavalcade).
+   * RePEc/IDEAS NEP weekly reports (`nep-ban`, `nep-cfn`, `nep-fmk`, `nep-mon`).
+   * arXiv `q-fin` for quantitative finance and FinTech/ML.
 
-### Step 1: Scope The Review
+### Step 3: Collect & Full-Text / Introduction Retrieval
+* **Do not stop at the abstract**: Retrieve the manuscript or open-access working paper PDF/HTML (via SSRN, NBER, OpenAlex, institutional repository, or publisher).
+* For mature topics: collect seminal Top 3/Top 5 published papers first, follow forward citation chains, and capture modern working paper re-examinations.
+* For frontier topics: capture active Tier 1 working papers, check their R&R or top conference screening status, and complement with published foundational models.
+* Cross-check whether working papers have subsequently been published.
 
-Clarify:
+### Step 4: Extract via the 3-Anchor Protocol (16-Column Matrix)
+Using [templates/literature-matrix.md](templates/literature-matrix.md), execute [references/contribution-extraction.md](references/contribution-extraction.md):
+* **Target the 3 Introduction Anchors**:
+  * *Anchor 1 (Paras 3–4)*: Setting, exact dataset, and specific exogenous shock.
+  * *Anchor 2 (Paras 5–6)*: Baseline quantitative findings and economic magnitude.
+  * *Anchor 3 (Paras 9–11)*: Self-stated contribution and incremental boundary relative to benchmark papers.
+* **Inspect Table Notes**: Dependent variables, included fixed effects, and clustering level.
+* **Tag Verification Level**: `[Full-Text Verified]`, `[Intro / Table Verified]`, or `[Abstract-Only Provisional]`.
+* **Record Lineage Role**: Theoretical Originator, First Empirical Landmark, Causal ID Benchmark, or Boundary / Reassessment.
+* **Separate Verified Claim from Boundary Condition**: Record what the paper established and what it left open.
 
-- topic,
-- subfield,
-- mechanism,
-- geography,
-- sample period,
-- whether the user wants published-only or frontier coverage,
-- final output type.
+### Step 5: Synthesize by Mechanism & Lineage
+Synthesize findings along economic channels:
+* Contrast differing empirical findings by their identification strategies and sample settings (e.g., why cross-sectional OLS diverges from quasi-experimental DiD estimates).
+* Preserve theoretical ownership: credit theoretical originators for mechanisms, and causal benchmarks for identification.
+* Delineate boundary conditions: use what previous papers left open to establish true research gaps.
 
-If the request is vague, ask the smallest number of scoping questions needed to fix the venue ladder and the search terms.
+### Step 6: Deliver & Verify
+Produce the selected output format ([references/output-modes.md](references/output-modes.md)):
+* Prioritized Reading List
+* Complete Literature Matrix
+* Related Literature Section (draft-ready prose)
+* Gap Map & Research Proposals
 
-### Step 2: Build A Search Grid
-
-Define:
-
-- core concepts,
-- finance-specific synonyms,
-- adjacent economics / accounting terms,
-- method terms,
-- regulation / event names,
-- dataset names,
-- frontier working-paper outlets.
-
-### Step 3: Collect Sources
-
-Prioritize seminal published papers first, then recent papers, then frontier working papers.
-
-Do not let frontier working papers crowd out the canonical published literature in a mature area.
-
-### Step 4: Extract A Finance Matrix
-
-Use the matrix template in [templates/literature-matrix.md](templates/literature-matrix.md).
-
-For each important paper, capture:
-
-- citation,
-- venue tier,
-- published vs working paper,
-- research question,
-- sample and period,
-- unit of observation,
-- identification strategy,
-- key finding,
-- mechanism,
-- main limitation,
-- why it matters for the user's question.
-
-### Step 5: Synthesize
-
-Prefer synthesis by:
-
-- mechanism,
-- identification strategy,
-- sample or institutional setting,
-- consistency vs disagreement in results,
-- published evidence vs frontier evidence.
-
-Avoid paper-by-paper summaries unless the user explicitly asks for them.
-
-### Step 6: Deliver
-
-Default deliverables:
-
-- scoped review question,
-- prioritized reading list,
-- literature matrix,
-- synthesis,
-- research gaps,
-- citation block.
-
-Before finishing, run the checklist in [references/synthesis-checklist.md](references/synthesis-checklist.md).
-
-## Finance-Specific Heuristics
-
-- If the topic is asset pricing, keep theory, empirics, and measurement separate.
-- If the topic is corporate finance, separate mechanism papers from reduced-form identification papers.
-- If the topic is banking or macro-finance, be explicit about policy regime and sample window.
-- If the topic overlaps accounting, flag whether the evidence is about disclosure, reporting quality, auditing, or governance.
-- If a result is still mostly a working-paper literature, say that the evidence base is provisional.
-
-## Optional Tooling
-
-- Use Zotero if a structured citation library is available.
-- Use metadata APIs or official journal pages before relying on scraped summaries.
-- Use PDF extraction only when the text is actually needed for design or mechanism verification.
-
-## Recommended Output Mode
-
-Pick one default mode unless the user asks for more than one:
-
-- reading list,
-- literature matrix,
-- related literature section,
-- gap map.
-
-See [references/output-modes.md](references/output-modes.md).
+Run through [references/synthesis-checklist.md](references/synthesis-checklist.md) before presenting final deliverables.
