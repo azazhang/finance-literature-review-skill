@@ -1,106 +1,28 @@
 # Finance Literature Review Skill
 
-Finance-first literature review instructions for coding agents.
+A source-first research skill for financial economics. It helps agents discover the closest published and working papers, **retrieve and read primary research**, verify consequential claims against actual passages and exhibits, evaluate identification and economic contributions, and deliver a useful literature synthesis.
 
-Repo: https://github.com/azazhang/finance-literature-review-skill
+The governing rule: **no substantive claim about a paper without an actual inspected source supporting that claim**. An abstract-only paper can support provisional author-reported facts; it cannot ground independent judgments about identification, mechanisms, or novelty. When pivotal full text is unavailable, the agent tries legitimate open/working-paper versions and then asks the researcher for the PDF. It keeps working with accessible sources rather than inventing inaccessible research.
 
-This project adapts the strongest public literature-research skill patterns to a rigorous PhD-in-Finance workflow:
+## Package
 
-- **Dynamic venue & working paper hierarchy**: Values Tier 1 working papers (NBER, CEPR, Central Banks, Top 3 R&Rs, AFA/WFA presentations) alongside core journals (JF, JFE, RFS) on frontier topics.
-- **Systematic working paper discovery**: Explicit search channels across SSRN FEN eJournals, NBER programs, CEPR, central banks, annual conference proceedings, and finance JEL codes.
-- **Abstract Quarantine & Anti-Hallucination**: Prohibits inferring contributions, identification strategies, or magnitudes from abstracts alone; mandates retrieving Introductions and table notes.
-- **3-Anchor Introduction Protocol**: Verifies empirical designs, quantitative magnitudes, and self-stated contributions relative to landmark benchmark papers.
-- **Intellectual lineage & boundary tracking**: Traces theoretical originators, causal identification benchmarks, and records what prior studies established vs. what they left open.
-- **Granular econometric & identification tracking**: Captures specific exogenous shocks, primary datasets (Compustat, CRSP, Dealscan, Call Reports, TRACE), fixed effects structures, standard error clustering, and staggered DiD robustness in a 16-column matrix.
-- **Finance-first synthesis**: Synthesizes by theoretical mechanism and causal design with adjacent economics and accounting support.
-- **Zero citation fabrication**: Strict anti-hallucination guardrails and publication status verification.
+- [Main skill](skill/finance-literature-review/SKILL.md) — research objective, anti-fabrication evidence requirements, four substantive questions, and stopping rule.
+- [Source verification](skill/finance-literature-review/references/source-verification.md) — full-text recovery, version identity, abstract quarantine, actual design/results/contribution reading, claim-level locators, and source-to-synthesis reconciliation.
+- [Discovery](skill/finance-literature-review/references/discovery.md) — finance and related literature, current working-paper channels, citation chaining, and assessment of screening signals.
+- [Critical synthesis](skill/finance-literature-review/references/critical-synthesis.md) — identification, competing mechanisms, intellectual lineage, genuine research gaps, and incremental contribution.
+- [Outputs](skill/finance-literature-review/references/outputs.md) — scoped reading lists, deep dives, related-literature prose, gap maps, and claim provenance.
+- [Optional matrix](skill/finance-literature-review/templates/literature-matrix.md) — source-located extraction and one documented real-paper illustration.
 
-## What This Skill Does
+All local agents point to **one canonical package**, `skill/finance-literature-review/`. Previous Codex/Cursor duplicates and verbose provider-specific prompts have been superseded.
 
-The skill turns a literature request into an academic review workflow:
-
-1. **Scope & Topic Maturity**: Classify topic as frontier/emergent (where Tier 1 working papers lead) or mature paradigm (where peer-reviewed articles anchor).
-2. **Build Search Grid**: Construct query grids across top journals, SSRN FEN, NBER programs, conference schedules, and JEL codes.
-3. **Collect & Introduction Retrieval**: Retrieve full-text or Introduction sections (Paras 3–11); quarantine abstract-only papers to prevent hallucinated contributions.
-4. **Extract Finance Matrix (16 Columns)**: Populate empirical matrix capturing datasets, shocks, fixed effects, verified findings, mechanisms, boundary conditions, and lineage roles.
-5. **Synthesize by Mechanism & Lineage**: Contrast causal designs and theoretical channels; separate empirical correlations from mechanisms and preserve intellectual ownership.
-6. **Deliver**: Output a prioritized reading list, complete literature matrix, draft-ready related literature section, or research gap map.
-
-## Supported Providers
-
-| Provider | Repo Asset | Local Install Target | Status |
-| --- | --- | --- | --- |
-| OpenAI Codex | `providers/codex/finance-literature-review/` | `~/.codex/skills/finance-literature-review` | supported |
-| Cursor IDE | `.cursor/skills/finance-literature-review/` | `~/.cursor/skills/finance-literature-review` | supported |
-| Google Antigravity | `providers/codex/...` + `.agent/workflows/...` | `~/.gemini/antigravity/skills/`, `.agent/workflows/` | supported |
-| Claude Code | `CLAUDE.md`, `.claude/commands/finance-lit-review.md` | `~/.claude/CLAUDE.md`, `~/.claude/commands/` | supported |
-| Gemini CLI | `GEMINI.md` | `~/.gemini/GEMINI.md` | supported |
-| GitHub Copilot | `.github/copilot-instructions.md` | `~/.copilot/instructions.md` & repo `.github/` | supported |
-| Universal Agents | `providers/codex/...` | `~/.agents/skills/finance-literature-review` | supported |
-| OpenHands | `providers/codex/...` | `~/.openhands/skills/finance-literature-review` | supported |
-| OpenClaw | `providers/codex/...` | `~/.openclaw/skills/finance-literature-review` | supported |
-| OpenCode | `providers/codex/...` | `~/.opencode/skills/finance-literature-review` | supported |
-
-## How To Use The Skill
-
-The basic formula is:
-
-> topic + empirical setting + source preference + output format
-
-Examples:
-
-- "Do a finance literature review on private credit growth and corporate borrowing. Treat as a frontier topic: prioritize Tier 1 working papers (NBER, CEPR, Top 3 R&Rs, AFA/WFA) alongside top finance journals. Deliver a matrix and research gap map."
-- "Map the disclosure literature relevant to cost of capital, with top accounting (JAR, JAE, TAR) and top finance journals. Capture the exogenous shock, mechanism, and endogeneity threats for each paper."
-- "Review the empirical literature on shareholder payouts following corporate tax shocks. Focus on quasi-natural experiments and staggered DiD designs, and produce a related literature section outline."
-
-Detailed usage examples are in [docs/how-to-use.md](docs/how-to-use.md).
-
-## Install
+## Installation
 
 ```bash
-python3 scripts/install_local.py
+python3 scripts/install_local.py --providers codex,cursor,claude,gemini,antigravity,agents,opencode
 ```
 
-Useful options:
+The installer uses symlinks to the canonical skill and can update known legacy links safely; other existing installations require explicit consent to overwrite. `--dry-run` previews changes. It also refreshes short managed pointers for Claude/Gemini/Copilot without overwriting unrelated text. The standalone Gemini web/desktop App has separate account-level skill management and is not installed by a Mac symlink.
 
-```bash
-python3 scripts/install_local.py --dry-run
-python3 scripts/install_local.py --providers codex,cursor,claude,gemini,copilot
-python3 scripts/install_local.py --mode copy
-python3 scripts/install_local.py --force
-```
+**No programmatic literature-quality validator exists in this skill.** The source evidence, accurate identification of what the agent examined, and the actual quality of synthesis are the relevant tests. The installer is the repository's sole executable. Historical implementations remain recoverable in Git.
 
-## Verify
-
-Repo structure:
-
-```bash
-python3 scripts/verify_repo.py
-```
-
-Local install state:
-
-```bash
-python3 scripts/verify_local_install.py
-```
-
-## Repo Structure
-
-- `providers/codex/finance-literature-review/`: Codex-native skill package.
-  - `references/contribution-extraction.md`: Abstract quarantine, 3-anchor introduction protocol, and ownership lineage.
-  - `references/working-papers.md`: Working paper discovery channels, tiering, and evaluation.
-  - `references/journal-priority.md`: Venue hierarchy and dynamic topic weighting.
-  - `references/output-modes.md`: Detailed guides for reading lists, matrices, related-lit sections, and gap maps.
-  - `references/synthesis-checklist.md`: Quality checklist before final delivery.
-  - `templates/literature-matrix.md`: 16-column empirical finance matrix schema.
-- `.cursor/skills/finance-literature-review/`: Cursor project skill (mirrors codex package).
-- `CLAUDE.md` and `.claude/commands/finance-lit-review.md`: Claude Code memory and command.
-- `GEMINI.md`: Gemini memory file.
-- `.github/copilot-instructions.md`: GitHub Copilot repo instructions.
-- `.agent/workflows/finance_lit_review.md`: experimental Antigravity workspace workflow.
-- `docs/skill-landscape.md`: benchmark review of major public literature-research skills.
-- `docs/how-to-use.md`: prompt patterns and usage examples.
-- `docs/provider-support.md`: provider-by-provider support notes.
-- `scripts/install_local.py`: local installer.
-- `scripts/verify_repo.py`: repo validator.
-- `scripts/verify_local_install.py`: local install validator.
+Repository: https://github.com/azazhang/finance-literature-review-skill
